@@ -7,29 +7,34 @@
 </head>
 <body>
 	<?php
-		class Cabercera_Pagina{
+		class Cabecera_Pagina{
 			private $titulo;
 			private $ubicacion;
-			public function inicializar($title, $ubication){
+			private $color;
+			public function inicializar($title, $ubication, $colour){
 				$this->titulo = $title;
 				$this->ubicacion = $ubication;
+				$this->color = $colour;
 			}
 			public function graficar(){
-				echo '<div style="font-size:40px;text-align:' . $this->ubicacion . '">';
+				echo '<div style="font-size:40px;text-align:' . $this->ubicacion . '; color:' . $this->color . ';">';
 				echo $this->titulo;
 				echo '</div>';
 			}
 		}
 		if (isset($_GET['alinear']))
 			$alinear = $_GET['alinear'];
-		else
-			$alinear = 'center';
-		$cabecera = new Cabercera_Pagina();
-		$cabecera->inicializar('El Federiko',$alinear);
+		if (isset($_GET['color_fuente']))
+			$color_fuente = $_GET['color_fuente'];
+		$cabecera = new Cabecera_Pagina();
+		$cabecera->inicializar('El Federiko',$alinear,$color_fuente);
 		$cabecera->graficar();
-		echo '<p><a href="./005metodos.php?alinear=right"> Alinear a la derecha </a></p>';
-		echo '<p><a href="./005metodos.php?alinear=left"> Alinear a la izquierda </a></p>';
-		echo '<p><a href="./005metodos.php?alinear=center"> Centrar </a></p>';
+		echo '<p><a href="./006metodos.php?alinear=center&color_fuente=' . $color_fuente . '"> Centrar </a></p>';
+		echo '<p><a href="./006metodos.php?alinear=right&color_fuente=' . $color_fuente . '"> Derecha </a></p>';
+		echo '<p><a href="./006metodos.php?alinear=left&color_fuente=' . $color_fuente . '"> Izquierda </a></p>';
+		echo '<p><a href="./006metodos.php?alinear=' . $alinear .'&color_fuente=green"> Verde </a></p>';
+		echo '<p><a href="./006metodos.php?alinear=' . $alinear .'&color_fuente=red"> Rojo </a></p>';
+		echo '<p><a href="./006metodos.php?alinear=' . $alinear .'&color_fuente=blue"> Azul </a></p>';
 
 	?>
 </body>
