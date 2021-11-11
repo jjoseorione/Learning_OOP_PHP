@@ -11,9 +11,11 @@
 			private $enlace = array();
 			private $titulo = array();
 			private $alineacion;
-			public function __construct($align){
-				$this->enlace[] = $link;
-				$this->titulo[] = $title;
+			public function __construct($align, $link = NULL, $title = NULL){
+				if ($link && $title){
+					$this->enlace[] = $link;
+					$this->titulo[] = $title;
+				}
 				$this->alineacion = $align;
 			}
 
@@ -23,20 +25,15 @@
 			}
 
 			private function mostrarHorizontal(){
-				echo '<div style="border:1px solid blue;">';
-				for ($elem = 1; $elem <= count($this->enlace); $elem++)
-					echo '<a style="border:1px solid blue;" href = "' . $this->enlace[$elem] . '">' . $this->titulo[$elem] . '</a>';
-				echo '</div>';
+				for ($elem = 0; $elem < count($this->enlace); $elem++){
+					echo '<a style="border:1px solid blue;margin:2px;" href = "' . $this->enlace[$elem] . '">' . $this->titulo[$elem] . '</a>';
+				}
 			}
 
 			private function mostrarVertical(){
-				echo '<div style="border:1px solid blue;">';
-				for ($elem = 1; $elem <= count($this->enlace); $elem++){
-					echo '<div>';
-					echo '<a style="border:1px solid blue;" href = "' . $this->enlace[$elem] . '">' . $this->titulo[$elem] . '</a>';
-					echo '</div>';
+				for ($elem = 0; $elem < count($this->enlace); $elem++){
+					echo '<div style="margin-top:4px;"><a style="border:1px solid blue;" href = "' . $this->enlace[$elem] . '">' . $this->titulo[$elem] . '</a></div>';
 				}
-				echo '</div>';
 			}
 
 			public function graficar(){
